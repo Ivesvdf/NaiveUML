@@ -1,0 +1,67 @@
+AST
+=
+=
+
+#################################"
+Expression : AST : AssignmentExpression
+=
+List<AssignmentExpression> assignmentExpressions;
+List<AssignmentExpression> assignmentExpressions etc etc etc
+=
+void addAssignmentExpression(AssignmentExpression ae);
+
+#################################"
+AssignmentExpression : AST
+=
+bla
+=
+
+#################################"
+FunctionCall : AssignmentExpression
+=
+String functionName
+List<Expression> actualParameters
+=
+
+#################################"
+LValue : AST
+=
+=
+
+#################################"
+Constant : LValue
+=
+=
+
+#################################"
+StringConstant : Constant
+=
+String s;
+=
+
+#################################"
+CharConstant : Constant
+=
+char c;
+=
+
+#################################"
+DecimalConstant : Constant
+=
+int i;
+=
+
+#################################"
+FloatConstant : Constant
+=
+Float f;
+=
+
+#################################"
+ActualAssignmentExpression : AssignmentExpression : LValue, AssignmentExpression
+=
+LValue lvalue
+AssignmentExpression AssignmentExpression
+=
+
+
