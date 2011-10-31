@@ -1,4 +1,4 @@
-AST
+Interface AST
 =
 =
 
@@ -8,7 +8,7 @@ Expression : AST : AssignmentExpression
 List<AssignmentExpression> assignmentExpressions;
 List<AssignmentExpression> assignmentExpressions etc etc etc
 =
-void addAssignmentExpression(AssignmentExpression ae);
+addAssignmentExpression(ae : AssignmentExpression);
 
 #################################"
 AssignmentExpression : AST

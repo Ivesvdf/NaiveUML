@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# vim: set fileencoding=utf8 :
 
 import sys
 
@@ -12,6 +13,7 @@ class AClass:
 		self.publics = []
 		self.parents = []
 		self.assoc = []
+		self.interface = False
 		debug("Starting class " + name)
 
 	def addPrivateFunction(self, str):
@@ -47,9 +49,16 @@ while i < len(lines):
 		continue
 
 	lineparts = line.split(":")
-	classname = lineparts[0]
+	if lineparts[0].lower().find("interface ") == 0:
+		classname = lineparts[0][10:]
+		interface = True
+	else:
+		classname = lineparts[0]
+		interface = False
+
 
 	thisClass = AClass(classname)
+	thisClass.interface = interface
 
 	if len(lineparts) > 1:
 		parents = [ x.strip() for x in lineparts[1].split(",") ]
@@ -125,7 +134,7 @@ for c in classes:
 	newname = c.name if len(c.name) > 14 else c.name.center(16, " ")
 	line("                label = ")
 	line("                <<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" >")
-	line("                        <tr><td><font face=\"Helvetica-Bold\">")
+	line("                        <tr><td>" + ("«interface»<br align=\"center\"/>" if c.interface else "") + "<font face=\"Helvetica-Bold\">")
 	line(newname)
 	line("</font></td></tr>")
 	line("                        <tr><td align=\"left\">")
