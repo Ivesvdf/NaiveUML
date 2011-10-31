@@ -19,8 +19,8 @@ bla
 #################################"
 FunctionCall : AssignmentExpression
 =
-String functionName
-List<Expression> actualParameters
+functionName : String 
+actualParameters : List<Expression> 
 =
 
 #################################"
@@ -36,19 +36,19 @@ Constant : LValue
 #################################"
 StringConstant : Constant
 =
-String s;
+s : String
 =
 
 #################################"
 CharConstant : Constant
 =
-char c;
+c : char
 =
 
 #################################"
 DecimalConstant : Constant
 =
-int i;
+i : Integer
 =
 
 #################################"
