@@ -5,8 +5,7 @@ Interface AST
 #################################"
 Expression : AST : AssignmentExpression
 =
-List<AssignmentExpression> assignmentExpressions;
-List<AssignmentExpression> assignmentExpressions etc etc etc
+assignmentExpressions : AssignmentExpression[]
 =
 addAssignmentExpression(ae : AssignmentExpression);
 
@@ -20,7 +19,7 @@ bla
 FunctionCall : AssignmentExpression
 =
 functionName : String 
-actualParameters : List<Expression> 
+actualParameters : Expression[] 
 =
 
 #################################"

@@ -61,7 +61,7 @@ while i < len(lines):
 	thisClass.interface = interface
 
 	if len(lineparts) > 1:
-		parents = [ x.strip() for x in lineparts[1].split(",") ]
+		parents = [ x.strip() for x in lineparts[1].split(",") if x.strip() != ""]
 		thisClass.setParents(parents)
 
 	if len(lineparts) > 2:
