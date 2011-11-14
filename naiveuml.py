@@ -7,8 +7,9 @@ def debug(str):
 	sys.stderr.write(str + "\n")
 
 class AClass:
-	def __init__(self,name):
+	def __init__(self,name,implicit_relations):
 		self.name = name
+		self.implicit_relations = implicit_relations
 		self.privates = []
 		self.publics = []
 		self.parents = []
@@ -16,11 +17,22 @@ class AClass:
 		self.interface = False
 		debug("Starting class " + name)
 
-	def addPrivateFunction(self, str):
+	def addPrivate(self, str):
 		debug ("Adding private " + str);
 		self.privates.append(str)
 
-	def addPublicFunction(self, str):
+		if self.implicit_relations:
+			debug("implicit relations is on")
+			split = str.split(':')
+			
+			if len(split) == 2:
+				rel = split[1].strip().rstrip('[]').strip()
+				debug("rel = " + rel)
+
+				if rel not in self.assoc:
+					self.assoc.append(rel)
+
+	def addPublic(self, str):
 		debug ("Adding public " + str);
 		self.publics.append(str)
 
@@ -31,6 +43,19 @@ class AClass:
 	def setAssociations(self, assoc):
 		debug ("Setting associations to " + str(assoc))
 		self.assoc = assoc
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Visual UML generator')
+parser.add_argument('-i', '--implicit-relations', action="store_true",
+dest="implicit_rel", default=False)
+
+args = parser.parse_args()
+
+if args.implicit_rel:
+	implicit_relations = True
+else:
+	implicit_relations = False
 
 classes = []
 
@@ -57,7 +82,7 @@ while i < len(lines):
 		interface = False
 
 
-	thisClass = AClass(classname)
+	thisClass = AClass(classname.strip(), implicit_relations)
 	thisClass.interface = interface
 
 	if len(lineparts) > 1:
@@ -78,13 +103,13 @@ while i < len(lines):
 	i += 2
 
 	while lines[i][0] != "=":
-		thisClass.addPrivateFunction(lines[i])
+		thisClass.addPrivate(lines[i])
 		i+=1
 
 	i+=1
 
 	while lines[i] != "" and lines[i][0] != "=":
-		thisClass.addPublicFunction(lines[i])
+		thisClass.addPublic(lines[i])
 		i+=1
 
 	classes.append(thisClass)
@@ -156,7 +181,7 @@ line("""
 """)
 
 for c in classes:
-	for parent in c.parents:
+	for parent in [x for x in c.parents if x in [a.name for a in classes]]:
 		line("       " + className(c.name) + " -> " + className(parent));
 
 line("""
@@ -167,7 +192,7 @@ line("""
 """)
 
 for c in classes:
-	for assoc in c.assoc:
+	for assoc in [x for x in c.assoc if x in [a.name for a in classes]]:
 		line("       " + className(c.name) + " -> " + className(assoc));
 
 line("}")

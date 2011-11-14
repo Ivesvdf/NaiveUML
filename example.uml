@@ -3,7 +3,7 @@ Interface AST
 =
 
 #################################"
-Expression : AST : AssignmentExpression
+Expression : AST
 =
 assignmentExpressions : AssignmentExpression[]
 =
@@ -53,14 +53,14 @@ i : Integer
 #################################"
 FloatConstant : Constant
 =
-Float f;
+f: Float;
 =
 
 #################################"
-ActualAssignmentExpression : AssignmentExpression : LValue, AssignmentExpression
+ActualAssignmentExpression : AssignmentExpression
 =
-LValue lvalue
-AssignmentExpression AssignmentExpression
+lvalue: LValue
+assignmentExpression: AssignmentExpression 
 =
 
 
