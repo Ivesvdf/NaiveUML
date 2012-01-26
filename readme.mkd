@@ -51,7 +51,7 @@ which obviously requires the GraphViz package.
 
 It produces something like
 
-![Example output](example_output.png)
+![Example output](https://github.com/Ivesvdf/NaiveUML/raw/master/example_output.png)
 
 *Now, what does this mean?*  
 First of all, all lines starting with # are considered comments, so the 
