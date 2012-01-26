@@ -1,0 +1,83 @@
+NaiveUML
+========
+NaiveUML consists of a very simple UML class diagram representation and
+accompanying compiler to GraphViz code. 
+
+NaiveUML is very simple to write, a small example:
+
+    # A cat is a class that is related to classes Mouse and Bird, and derives
+	# from class Animal
+    Cat : Animal : Mouse, Bird
+	=
+	miceCaught: integer
+	birdsCaught: integer
+	=
+	setMiceCaught(newCaught: integer)
+	setBirdsCaught(newCaught: integer)
+	getMiceCaught() : integer
+	getBirdsCaught() : integer
+	getAnimalsCaught() : integer
+
+
+    # ============================================
+	Animal : Organism
+	=
+	=
+
+
+    # ============================================
+	Interface Organism
+	=
+	=
+	eat()
+
+    # ============================================
+	Mouse : Animal
+	=
+	=
+
+
+    # ============================================
+	Bird : Animal
+	=
+	=
+
+If this file is named example.uml, it can be converted to a pdf by executing
+the command 
+
+    python naiveuml.py <example.uml | dot -Tpdf >output.pdf
+
+which obviously requires the GraphViz package. 
+
+It produces something like
+
+![Example output](example_output.png)
+
+*Now, what does this mean?*  
+First of all, all lines starting with # are considered comments, so the 
+
+    # ============================================
+	
+that appear are not required to be present and do not cary any meaning. 
+
+A class is shaped as following:
+
+    STRUCTURE
+    =
+    PRIVATE MEMBERS
+    =
+    PUBLIC MEMBERS
+
+similar to how UML class diagrams are structured when displayed. Empty lines
+are not allowed within a class definition. 
+
+STRUCTURE can optionally have an "Interface" qualifier, which makes this class
+an interface class. It always contains the name of this class. It can also
+contain a colon (:) followed by a comma separated list of classes this class
+is derived from, possibly followed by another colon (:) followed by a comma
+separated list of classes this class is somehow related to. 
+
+The PRIVATE MEMBERS and PUBLIC MEMBERS sections of a class definition contain
+the respectively private and public members of your class. This could be data
+members or functions. 
+

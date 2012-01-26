@@ -1,66 +1,38 @@
-Interface AST
+# A cat is a class that is related to classes Mouse and Bird, and derives from
+# class Animal
+Cat : Animal : Mouse, Bird
+=
+miceCaught: integer
+birdsCaught: integer
+=
+setMiceCaught(newCaught: integer)
+setBirdsCaught(newCaught: integer)
+getMiceCaught() : integer
+getBirdsCaught() : integer
+getAnimalsCaught() : integer
+
+
+# Animal derives from Organism and is not related to any class
+Animal : Organism
 =
 =
 
-#################################"
-Expression : AST
-=
-assignmentExpressions : AssignmentExpression[]
-=
-addAssignmentExpression(ae : AssignmentExpression);
 
-#################################"
-AssignmentExpression : AST
+# Organism is an interface that is not related to anything and does not derive
+# from anything. It has the single public method eat() returning nothing. 
+Interface Organism
 =
-bla
 =
+eat()
 
-#################################"
-FunctionCall : AssignmentExpression
-=
-functionName : String 
-actualParameters : Expression[] 
-=
-
-#################################"
-LValue : AST
+# Mouse derives from animal. 
+Mouse : Animal
 =
 =
 
-#################################"
-Constant : LValue
-=
-=
 
-#################################"
-StringConstant : Constant
+# ============================================
+Bird : Animal
 =
-s : String
 =
-
-#################################"
-CharConstant : Constant
-=
-c : char
-=
-
-#################################"
-DecimalConstant : Constant
-=
-i : Integer
-=
-
-#################################"
-FloatConstant : Constant
-=
-f: Float;
-=
-
-#################################"
-ActualAssignmentExpression : AssignmentExpression
-=
-lvalue: LValue
-assignmentExpression: AssignmentExpression 
-=
-
 
