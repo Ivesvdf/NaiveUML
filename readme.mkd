@@ -1,7 +1,8 @@
 NaiveUML
 ========
 NaiveUML consists of a very simple UML class diagram representation and
-accompanying compiler to GraphViz code. 
+accompanying compiler to GraphViz code. It aims to have the lowest possible
+overhead (syntax) to make creating a class diagram as fast as humanly possible. 
 
 NaiveUML is very simple to write, a small example:
 
